@@ -11,11 +11,49 @@ collections:
     folder: 'content/blog'
     format: 'frontmatter'
     create: true
-    slug: '{{year}}-{{month}}-{{day}}-{{slug}}'
+    slug: '{{slug}}'
     editor:
       preview: false
     fields:
+      - { label: 'Layout', name: 'layout', widget: 'hidden', default: 'post' }
       - { label: 'Title', name: 'title', widget: 'string' }
+      - { label: 'Heading1', name: 'heading1', widget: 'string' }
+      - name: meta
+        widget: list
+        fields:
+          - { name: name }
+          - { name: content }
       - { label: 'Publish Date', name: 'date', widget: 'datetime' }
-      - { label: 'Description', name: 'description', widget: 'string' }
+      - {
+          label: 'Featured Image',
+          name: 'thumbnail',
+          widget: 'image',
+          default: '../../assets/img/holaluz-default-image.jpg',
+        }
+      - {
+          label: 'IsImportant',
+          name: 'isimportant',
+          widget: 'boolean',
+          default: false,
+        }
+      - {
+          label: 'Tags',
+          name: 'tags',
+          widget: 'select',
+          options:
+            ['tramites', 'factura', 'solar', 'gas', 'preguntas-frecuentes'],
+        }
+      - {
+          label: 'Permalink',
+          name: 'permalink',
+          widget: 'select',
+          options:
+            [
+              '/tramites/:slug',
+              '/factura/:slug',
+              '/solar/:slug',
+              '/gas/:slug',
+              '/preguntas-frecuentes/:slug',
+            ],
+        }
       - { label: 'Body', name: 'body', widget: 'markdown' }
